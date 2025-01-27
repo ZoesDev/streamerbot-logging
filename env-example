@@ -6,3 +6,4 @@ mysqlUser=user
 mysqlPassword=password
 mysqlDatabase=chatlogs
 Debug=false
+ignoredUsers=['user1','user2']
