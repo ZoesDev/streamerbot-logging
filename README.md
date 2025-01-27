@@ -9,7 +9,7 @@ Side project for [Streamer.bot](https://streamer.bot) to log my chat to mysql us
    ![image](https://github.com/user-attachments/assets/525b2405-ff56-4bdb-a45b-3936b95f7b4f)
 3. Install Nodejs 22.x or newer (tested on 22 and 23)
 4. clone repository to a directory to run
-5. copy env-example to .env
+5. copy env-example to .env and update parameters to your infromation for streamerbot and database info
 6. setup mysql database and user as normal.
 7. create table
 ```
@@ -37,3 +37,23 @@ CREATE TABLE `twitchChat` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 run with node index.js from console.
+
+
+
+
+
+### Configs
+
+Here is the parameters, defaults and what they are for
+
+| Config  | default value | description | notes |
+| ------------- | ------------- | ------------- | ------------- |
+| streamerbotHost  | 127.0.0.1  | IP to use to connect to streamerbot   | Can be left as default if on the same computer   |
+| streamerbotPort | 8080  | Port to use to connect ot streamerbot  | can be left default if you didnt need to change it in setup  |
+| streamerbotPassword | NULL  | Password  | Not currently used in code  |
+| mysqlHost | 127.0.0.1  | default IP of MYSQL server  | change to the IP/URL of Mysql Server  |
+| mysqlUser | user  | Username to connect with  |   |
+| mysqlPassword | password  | Password to connect with  |  |
+| mysqlDatabase | chatlogs  | Database name  |  |
+| Debug | false  | Content  | debug more enabled  | Not used currently |
+| ignoredUsers | ['user1','user2']  | USers to not log form  | THis is used to not log you or your streamerbot. can add more users if you have ones you dont want to log for |
