@@ -1,0 +1,8 @@
+streamerbotHost=127.0.0.1
+streamerbotPort=8080
+streamerbotPassword=
+mysqlHost=127.0.0.1
+mysqlUser=user
+mysqlPassword=password
+mysqlDatabase=chatlogs
+Debug=false
