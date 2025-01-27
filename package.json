@@ -1,0 +1,25 @@
+{
+  "name": "streamerbot-logging",
+  "version": "0.0.1",
+  "description": "streamerbot logging server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ZoesDev/streamerbot-logging.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZoesDev/streamerbot-logging/issues"
+  },
+  "homepage": "https://github.com/ZoesDev/streamerbot-logging#readme",
+  "dependencies": {
+    "@streamerbot/client": "^1.9.5",
+    "dotenv": "^16.4.7",
+    "json": "^11.0.0",
+    "mysql2": "^3.12.0"
+  }
+}
