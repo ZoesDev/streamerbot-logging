@@ -34,7 +34,23 @@ CREATE TABLE `twitchChat` (
   `emotes` varchar(256) DEFAULT NULL,
   `message` varchar(501) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `youtubeChat` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `source` varchar(11) DEFAULT NULL,
+  `timestamp` varchar(45) DEFAULT NULL,
+  `channelid` varchar(30) DEFAULT NULL,
+  `liveChatID` varchar(128) DEFAULT NULL,
+  `userid` varchar(128) DEFAULT NULL,
+  `userurl` varchar(256) DEFAULT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  `subscriber` varchar(5) DEFAULT NULL,
+  `verified` varchar(5) DEFAULT NULL,
+  `message` varchar(501) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 ```
 run with node index.js from console.
 
