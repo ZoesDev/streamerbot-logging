@@ -1,9 +1,10 @@
 streamerbotHost=127.0.0.1
 streamerbotPort=8080
-streamerbotPassword=
+streamerbotPassword=NULL
 mysqlHost=127.0.0.1
 mysqlUser=user
 mysqlPassword=password
 mysqlDatabase=chatlogs
 Debug=false
 ignoredUsers=['user1','user2']
+ignoredIds=['1Uh_1234U9Czy04If8Lvdddd']

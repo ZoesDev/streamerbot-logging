@@ -4,15 +4,17 @@ import 'dotenv/config';
 
 // List of usernames to ignore
 const ignoredUsers = process.env.ignoredUsers;
-
+const ignoredIds = process.env.ignoredIds;
 // Create a new client with default options
 const client = new StreamerbotClient({
     host: process.env.streamerbotHost,
     port: process.env.streamerbotPort,
-    subscribe: "*",
+    autoReconnect: true,
+    retries: -1,
+
 });
 
-// Creating the connection to the database
+//Creating the connection to the database
 const pool = mysql.createPool({
     host: process.env.mysqlHost,
     user: process.env.mysqlUser,
@@ -27,16 +29,14 @@ const pool = mysql.createPool({
     keepAliveInitialDelay: 0,
 });
 
-// Subscription will automatically be added to the client with your listener function
 client.on('Twitch.ChatMessage', ({ data, timeStamp, event }) => {
-    const username = data.message.username;
+   const username = data.message.username;
 
-    // Check if the username is in the ignored list
-    if (ignoredUsers.includes(username.toLowerCase())) {
+    //Check if the username is in the ignored list
+    if (ignoredUsers.includes(username)) {
         return; // Skip logging for ignored users
     }
-
-    // Log the message to the database
+    //Log the message to the database
     pool.query(
         "INSERT INTO twitchChat (`source`, `timestamp`, `channel`, `userid`, `username`, `displayname`, `role`, `subscriber`, `subscribertier`, `monthssubscribed`, `hasbits`, `bits`, `ishighighted`, `isreply`, `fristmessage`, `returningchatter`, `message`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
@@ -62,4 +62,32 @@ client.on('Twitch.ChatMessage', ({ data, timeStamp, event }) => {
             if (error) throw error;
         }
     );
+});
+
+client.on('YouTube.Message', ({ data }) => {
+    const userid = data.message.userid;
+
+    //Check if the username is in the ignored list
+    if (ignoredIds.includes(data.user.id)) {
+        return; // Skip logging for ignored users
+    }
+   //Log the message to the database
+   pool.query(
+    "INSERT INTO youtubeChat (`source`, `timestamp`, `channelid`, `liveChatID`, `userid`, `userurl`, `name`, `subscriber`, `verified`, `message`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    [
+        'Youtube',
+        data.publishedAt,
+        data.broadcast.channelId,
+        data.broadcast.liveChatId,
+        data.user.id,
+        data.user.url,
+        data.user.name,
+        data.user.isSponsor,
+        data.user.isVerified,
+        data.message,
+    ],
+    function (error, results, fields) {
+        if (error) throw error;
+    }
+);
 });
